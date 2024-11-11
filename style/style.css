@@ -1,0 +1,172 @@
+.space-mono-regular {
+    font-family: "Space Mono", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .space-mono-bold {
+    font-family: "Space Mono", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .space-mono-regular-italic {
+    font-family: "Space Mono", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .space-mono-bold-italic {
+    font-family: "Space Mono", serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+
+html {
+    color-scheme: dark light;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+}
+
+h1, h2 {
+    font-family: "Space Mono", serif;
+}
+
+p {
+    color: rgb(178, 178, 178);
+    margin-bottom: 50px;
+}
+
+.center {
+    text-align: center;
+}
+
+.workspace {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        width: 60vw;
+        margin-right: 15px;
+    }
+
+    .output {
+        display: flex;
+        flex-direction: column; 
+        width: 20vw;
+        border-left: solid 2px rgb(108, 108, 108);
+        padding-left: 10px;
+        
+    }
+
+    .output.enter-code > * {
+        opacity: 15%;
+        filter: blur(10px);
+    }
+
+    .output.enter-code::before {
+        display: absolute;
+        position: relative;
+        top: 40%;
+        margin: 0 auto;
+        content: 'Enter code and press "Convert" to view Web Component.';
+        color: white;
+        text-align: center;
+        opacity: 100%;
+    }
+
+    code-input {
+        min-height: 30vh;
+    }
+
+    .preview {
+        color-scheme: light;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 30vh;
+        margin: 8px;
+        background-color: light-dark(white,black);
+        color: initial;
+        border: 1.5px rgb(87, 87, 87) solid;
+        border-radius: 10px;
+    }
+}
+
+.wc-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .right {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+
+        button {
+            display:block;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            font-family: 'Space Mono', serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            border: none;
+            margin: 10px;
+            background: linear-gradient(hsl(282, 0%, 60%), hsl(255, 0%, 20%));
+            transition: all .2s ease-in-out;
+        }
+
+        button:hover {
+            scale: 1.1;
+            background: linear-gradient(rgb(205, 146, 231), rgb(82, 62, 140));
+            box-shadow: 0 0 10px 3px rgba(206, 146, 231, .3);
+        }
+    }
+
+    label {
+        color: rgb(178, 178, 178);
+    }
+    input {
+        margin-bottom: 10px;
+    }
+    input:last-of-type {
+        margin-bottom: 0px;
+    }
+}
+
+.loading {
+    &:before {
+        display: block;
+        margin: 40vh auto;
+        content: '';
+        width: 50px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 8px solid;
+        border-color: #ffffff #ffffff00;
+        animation: rotate-loader 1s infinite;
+    }
+    > * {
+        opacity: 0;
+        transition: opacity .5s ease-in-out;
+    }
+}
+
+.ready {
+    &:before {
+        display: none;
+    }
+
+    > * {
+        opacity: 1;
+    }
+}
+
+@keyframes rotate-loader {to{transform: rotate(.5turn)}}

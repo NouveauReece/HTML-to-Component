@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML to Web Component</title>
+
+  <script src="editor/code-input.min.js"></script>
+  <script src="editor/plugins.js"></script>
+  <script src="editor/prism.min.js"></script>
+  <script src="editor/convert.js"></script>
+
+  <link rel="stylesheet" href="style/editor.css">
+  <link rel="stylesheet" href="style/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <main class="loading">
+    <h1 class="center">HTML to Web Component</h1>
+    <p class="center">
+      Convert vanilla HTML and CSS to a Web Component!
+    </p>
+    <div class="workspace">
+      <div class="input">
+        <h2>HTML</h2>
+        <code-input id="html-in" class="line-numbers" lang="HTML" placeholder="Enter HTML Here"
+          onchange="updatePreview()"></code-input>
+        <h2>CSS</h2>
+        <code-input id="css-in" class="line-numbers" lang="CSS" placeholder="Enter CSS Here"
+          onchange="updatePreview()"></code-input>
+        
+        <div class="wc-options">
+          <div class="left">
+            <h2>Options</h2>
+            <div class="output-option">
+              <label for="wcname">Component Name</label>
+              <input type="text" placeholder="my-component" id="wcname" name="wcname" />
+            </div>
+            <div class="output-option">
+              <label for="shadow">Use Shadow DOM</label>
+              <input type="checkbox" id="shadow" name="shadow" />
+            </div>
+            <div class="output-option">
+              <label for="excss">External CSS</label>
+              <input type="checkbox" id="excss" name="excss" />
+            </div>
+            <div class="output-option">
+              <label for="callback">Extra callback methods</label>
+              <input type="checkbox" id="callback" name="callback" />
+            </div>
+          </div>
+          <div class="right">
+            <button>Convert</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="output enter-code">
+
+        <h2>Component JS</h2>
+        <code-input id="wc-out" class="line-numbers" lang="JavaScript"
+          placeholder="Web Component JS will appear here."></code-input>
+        <h2>Component Preview</h2>
+        <wc-preview id="preview" class="preview" html="" css=""></wc-preview>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    codeInput.registerTemplate("syntax-highlighted", codeInput.templates.prism(Prism, [
+      new codeInput.plugins.Indent(true, 2),
+      new codeInput.plugins.AutoCloseBrackets()
+    ]));
+    window.addEventListener("load", (event) => {
+      document.getElementsByTagName('main')[0].classList.add('ready');
+    });
+  </script>
+</body>
+
+</html>
